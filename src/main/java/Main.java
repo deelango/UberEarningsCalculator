@@ -15,7 +15,7 @@ public class Main {
     Scanner scan = new Scanner(System.in);
     System.out.println("Please enter the day of the week (ex. Monday): ");
     String dayOfWeek = scan.nextLine();
-    int day = DayOfWeek.getValue(dayOfWeek);
+    //int day = DayOfWeek.getValue(dayOfWeek);
     System.out.println("Integer value: " + DayOfWeek.of(day));
     //DayOfWeek dayOfWeeks = DayOfWeek.from(dayOfWeek);
 
