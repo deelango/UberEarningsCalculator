@@ -1,25 +1,48 @@
 import com.java.features.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 import java.time.*;
+import java.time.temporal.ChronoField;
 
 public class Main {
   static TotalKmsDriven totalKms = new TotalKmsDriven();
   static TotalHoursWorked totalHoursWorked = new TotalHoursWorked();
   static Gas moneySpentOnGas = new Gas();
   static TotalEarned totalMoneyEarned = new TotalEarned();
-  DayOfWeek dayOfWeeks;
 
   public Main() {}
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws ParseException {
     Scanner scan = new Scanner(System.in);
-    System.out.println("Please enter the day of the week (ex. Monday): ");
-    String dayOfWeek = scan.nextLine();
-    //int day = DayOfWeek.getValue(dayOfWeek);
-    System.out.println("Integer value: " + DayOfWeek.of(day));
-    //DayOfWeek dayOfWeeks = DayOfWeek.from(dayOfWeek);
 
-    //System.out.println("Record for " + DayOfWeek.from());
+    // Configuring the date of entry
+    System.out.println("Is the entry for today? [y/n]");
+    String whichDate = scan.nextLine();
+    while (!((whichDate.equals("y"))||(whichDate.equals("Y"))||(whichDate.equals("n"))||(whichDate.equals("N")))) {
+      System.out.println("Please enter a valid entry!");
+      whichDate = scan.nextLine();
+    }
+    // Date output in format "YYYY MM DD"
+    if ((whichDate.equals("y"))||(whichDate.equals("Y"))) {
+      LocalDate date = LocalDate.now();
+      DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+      String text = date.format(dateFormatter);
+      System.out.println(text);
+    } else {
+      // Date output in format "YYYY MM DD"
+      System.out.println("Enter the day in number:");
+      int day= scan.nextInt();
+      System.out.println("Enter the Month in number");
+      int month= scan.nextInt( );
+      System.out.println("Enter the Year in number format");
+      int year= scan.nextInt( );
+      String date = String.format("%d %d %d",year, month, day);
+      System.out.println(date);
+    }
 
     // Total Hours Driven
     System.out.println("Please enter the total amount of hours driven:");
@@ -68,10 +91,6 @@ public class Main {
     } else {
       return false;
     }
-  }
-
-  public static int getDayOfWeekInteger(DayOfWeek dayOfWeek) {
-    return dayOfWeek.getValue();
   }
 
 }
